@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon application Flask</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+    
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+    
+        h2 {
+            color: red;
+        }
+    
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Calculateur d'Empreinte Carbone</h1>
+
+    <h2>Country</h2>
+    <table border="1">
+        <tr>
+            <th>Country</th>
+            <th>Coal</th>
+            <th>Gas</th>
+            <th>Oil</th>
+            <th>Hydro</th>
+            <th>Renewable</th>
+            <th>Nuclear</th>
+        </tr>
+        {% for country in query_results %}
+        <tr>
+            <td>{{ country.Country }}</td>
+            <td>{{ country.Coal }}</td>
+            <td>{{ country.Gas}}</td>
+            <td>{{ country.Oil}}</td>
+            <td>{{ country.Hydro}}</td>
+            <td>{{ country.Renewable}}</td>
+            <td>{{ country.Nuclear}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>World</h2>
+    <table border="1">
+        <tr>
+            <th>Country</th>
+            <th>Coal</th>
+            <th>Gas</th>
+            <th>Oil</th>
+            <th>Hydro</th>
+            <th>Renewable</th>
+            <th>Nuclear</th>
+        </tr>
+        {% for world in query_results1 %}
+        <tr>
+            <td>{{ world.Country}}</td>
+            <td>{{ world.Coal}}</td>
+            <td>{{ world.Gas}}</td>
+            <td>{{ world.Oil}}</td>
+            <td>{{ world.Hydro}}</td>
+            <td>{{ world.Renewable}}</td>
+            <td>{{ world.Nuclear}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Résultat sur les Émissions de Charbon par Pays</h2>
+
+    <table>
+        <tr>
+            <th>Pays</th>
+            <th>Émissions de Coal</th>
+        </tr>
+        {% for result in sql_query_coal %}
+        <tr>
+            <td>{{ result.Country }}</td>
+            <td>{{ result.Coal }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Résultat sur les Émissions de Gas par Pays</h2>
+
+    <table>
+        <tr>
+            <th>Pays</th>
+            <th>Émissions de Gas</th>
+        </tr>
+        {% for result in sql_query_gas %}
+        <tr>
+            <td>{{ result.Country }}</td>
+            <td>{{ result.Gas }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Résultat sur les Émissions de Petrol par Pays</h2>
+
+    <table>
+        <tr>
+            <th>Pays</th>
+            <th>Émissions de Oil</th>
+        </tr>
+        {% for result in sql_query_oil %}
+        <tr>
+            <td>{{ result.Country }}</td>
+            <td>{{ result.Oil }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Résultat sur les Émissions Hydro-eléctrique par Pays</h2>
+
+    <table>
+        <tr>
+            <th>Pays</th>
+            <th>Émissions de Hydro</th>
+        </tr>
+        {% for result in sql_query_hydro %}
+        <tr>
+            <td>{{ result.Country }}</td>
+            <td>{{ result.Hydro }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Résultat sur les Émissions Solaire par Pays</h2>
+
+    <table>
+        <tr>
+            <th>Pays</th>
+            <th>Émissions de Renewable</th>
+        </tr>
+        {% for result in sql_query_renewable %}
+        <tr>
+            <td>{{ result.Country }}</td>
+            <td>{{ result.Renewable }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Résultat sur les Émissions Nucleaire par Pays</h2>
+
+    <table>
+        <tr>
+            <th>Pays</th>
+            <th>Émissions de Nuclear</th>
+        </tr>
+        {% for result in sql_query_nuclear %}
+        <tr>
+            <td>{{ result.Country }}</td>
+            <td>{{ result.Nuclear }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

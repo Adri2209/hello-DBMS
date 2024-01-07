@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribution des Sources aux Émissions de CO2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #112532;
+            text-align: center;
+        }
+        h2 {
+            color: #388ec8;
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #1bc77d;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Contribution des Sources aux Émissions de CO2</h1>
+
+    <form method="post" action="{{ url_for('contribution_filtered') }}">
+        <label for="selected_country_filter">Sélectionner un pays : </label>
+        <select name="selected_country" id="selected_country_filter" title="Sélectionnez un pays">
+            <option value="">Tous les pays</option>
+            {% for country in distinct_countries %}
+            <option value="{{ country }}" {% if country == selected_country %}selected{% endif %}>{{ country }}</option>
+            {% endfor %}
+        </select>
+    
+        <button type="submit">Filtrer</button>
+    </form>
+    <table border="1">
+        <tr>
+            <th>Source de production</th>
+            <th>% d'utilisation</th>
+            <th>Médiane de gCO2/kWh</th>
+            <th>Contribution en émission gCO2/kWh</th>
+        </tr>
+        {% for result in total_impact_results %}
+            <tr>
+                <td>{{ result["Source"] }}</td>
+                <td>{{ "{:.0f}".format(result["Percentage"]) }}</td>
+                <td>{{ "{:,.0f}".format(result["Median"]).replace(',', ' ') }}</td>
+                <td>{{ "{:.0%} x {:.0f} = {:.0f}".format(result["Percentage"] / 100, result["Median"], result["Contribution"] / 100) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Emission totale CO2 par Pays selectionné</h2>
+    <p>Résultat Émissions totale CO2 par Pays selectionné : {{ "{:,.2f}".format(total_emission) }} KgCO2/kWh</p>
+
+    <h2>Nombre d'arbres nécessaires pour absorber le CO2</h2>
+    <p>Nombre d'arbres nécessaires : {{ "{:,.0f}".format(trees_needed) }} arbres</p>
+</body>
+</html>

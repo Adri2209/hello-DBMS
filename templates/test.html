@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+
+        h2 {
+            color: red;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Page</h1>
+
+    <h2>Highest Emitting Country</h2>
+    <table border="1">
+        <tr>
+            <th>Country</th>
+            <th>Total Emissions</th>
+        </tr>
+        <tr>
+            <td>{{ highest_emitting_country.Country }}</td>
+            <td>{{ highest_emitting_country.TotalEmissions }}</td>
+        </tr>
+    </table>
+
+</body>
+</html>

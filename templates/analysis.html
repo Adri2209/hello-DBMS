@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analyse des Émissions de CO2 par source en Pourcentage</h1>
+
+    <table border="1">
+        <tr>
+            <th>Source</th>
+            <th>Pourcentage</th>
+        </tr>
+        <tr>
+            <td>Charbon</td>
+            <td>{{ (sql_query_coal[0][1] / total_world_emissions * 100)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td>Gaz Naturel</td>
+            <td>{{ (sql_query_gas[0][1] / total_world_emissions * 100)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td>Petrol</td>
+            <td>{{ (sql_query_oil[0][1] / total_world_emissions * 100)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td>Hydro-eléctrique</td>
+            <td>{{ (sql_query_hydro[0][1] / total_world_emissions * 100)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td>Solaire</td>
+            <td>{{ (sql_query_renewable[0][1] / total_world_emissions * 100)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td>Nucleaire</td>
+            <td>{{ (sql_query_nuclear[0][1] / total_world_emissions * 100)|round(2) }}</td>
+        </tr>
+    </table>
+    
+    
+</body>
+</html>
